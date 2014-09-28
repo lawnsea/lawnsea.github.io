@@ -3,9 +3,14 @@
 @import "../_lib/bower_components/foundation/scss/foundation/components/visibility";
 @import "../_lib/bower_components/foundation/scss/foundation/components/grid";
 
-$textColor: rgb(40, 40, 40);
+$body-font-color: rgb(80, 80, 80);
 $headingColor: rgb(243, 64, 0);
 $backgroundColor: rgb(206, 222, 236);
+$linkColor: desaturate($headingColor, 20%);
+
+a {
+    color: $linkColor;
+}
 
 .main {
     position: absolute;
@@ -13,6 +18,7 @@ $backgroundColor: rgb(206, 222, 236);
     height: 100%;
     background-position: bottom center;
     background-repeat: no-repeat;
+    color: $body-font-color;
 }
 
 .title-text {
@@ -32,11 +38,20 @@ $backgroundColor: rgb(206, 222, 236);
         vertical-align: bottom;
     }
 
-    .title span {
-        color: $textColor;
+    .title {
+        p {
+            margin-bottom: 0;
+        }
+    }
+
+    .bio {
+        padding: 0 0.75rem;
+
+        p {
+            font-size: 0.75rem;
+        }
     }
 }
-
 
 @media #{$landscape} {
     .main {
