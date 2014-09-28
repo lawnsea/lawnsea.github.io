@@ -1,0 +1,39 @@
+doctype
+html
+  head
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    title Lon Ingram
+    link(rel="stylesheet" href="/css/main.css")
+  body
+    != yield
+    script.
+      (function () {
+        function css(el, prop) {
+          return window.getComputedStyle ?
+            getComputedStyle(el).getPropertyValue(prop) :
+            el.currentStyle[prop];
+        }
+
+        function fitTitleText() {
+          var titleTextEls = document.querySelectorAll('.title-text span');
+          var el;
+
+          for (var i = 0; i < titleTextEls.length; i++) {
+            el = titleTextEls[i];
+            el.style.fontSize = Math.floor(
+                0.95 *
+                parseFloat(css(el, 'font-size')) *
+                el.parentElement.clientWidth / el.clientWidth
+              ) + 'px';
+          }
+        }
+
+        if (!document.querySelectorAll || !window.addEventListener) {
+          return;
+        }
+
+        fitTitleText();
+
+        window.addEventListener('resize', fitTitleText);
+        window.addEventListener('deviceorientation', fitTitleText);
+      }());
