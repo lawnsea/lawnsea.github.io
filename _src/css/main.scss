@@ -19,6 +19,19 @@ a {
     background-position: bottom center;
     background-repeat: no-repeat;
     color: $body-font-color;
+
+    .acknowledgements {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        background: transparentize($backgroundColor, 0.5);
+
+        p {
+            margin: 0;
+            padding: 0 0.1rem;
+            font-size: 0.2rem;
+        }
+    }
 }
 
 .title-text {
