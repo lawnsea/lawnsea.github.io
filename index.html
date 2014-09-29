@@ -1,0 +1,103 @@
+<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1"><title>Lon Ingram</title><link rel="stylesheet" href="/css/main.css"></head><body><div class="main"><div class="row"><div class="columns small-12 title-text"><div class="name"><h1><span>Lon Ingram</span></h1></div><div class="title"><p><span>Frontend Systems Engineer</span></p></div><hr/><div class="bio"><p class="text-justify">I hack on third-party JavaScript for Bazaarvoice. I live in Austin 
+with my lovely wife, <a href="http://www.cottonandcashmerestyle.com/">Donna</a>, and our son, <a href="https://twitter.com/lawnsea/status/510818552149184512">Sterling</a>. I am fascinated with applying ideas from systems research to the
+challenge of building cool complicated things on the web.</p></div><div class="contact"><ul class="inline-list"><li><a href="https://twitter.com/lawnsea">twitter</a></li><li><a href="https://github.com/lawnsea">github</a></li><li><a href="mailto:lawnsea@gmail.com">email</a></li></ul></div></div></div><div class="acknowledgements"><p class="text-center">Photo courtesy <a href-"https://twitter.com/gf3="href-"https://twitter.com/gf3">@gf3</a>. Thanks to <a href-"https://twitter.com/jennschiffer="href-"https://twitter.com/jennschiffer">@jennschiffer</a> and <a href-"https://twitter.com/brianloveswords="href-"https://twitter.com/brianloveswords">@brianloveswords</a> for
+lending a hand.</p></div></div><script>(function () {
+  function css(el, prop) {
+    return window.getComputedStyle ?
+      getComputedStyle(el).getPropertyValue(prop) :
+      el.currentStyle[prop];
+  }
+  
+  function fitTitleText() {
+    var titleTextEls = document.querySelectorAll('.title-text span');
+    var el;
+    
+    for (var i = 0; i < titleTextEls.length; i++) {
+      el = titleTextEls[i];
+      el.style.fontSize = Math.floor(
+          0.95 *
+          parseFloat(css(el, 'font-size')) *
+          el.parentElement.clientWidth / el.clientWidth
+      ) + 'px';
+    }
+  }
+  
+  if (!document.querySelectorAll || !window.addEventListener) {
+    return;
+  }
+  
+  fitTitleText();
+  
+  window.addEventListener('resize', fitTitleText);
+  window.addEventListener('deviceorientation', fitTitleText);
+}());</script><script>/*
+* FlowType.JS without jQuery.
+* Ported by Christian Dannie Storgaard. Based on:
+*
+* FlowType.JS 1.0
+* Copyright (c) 2013, Simple Focus http://simplefocus.com/
+*
+* FlowType.JS by Simple Focus (http://simplefocus.com/)
+* is licensed under the MIT License. Read a copy of the
+* license in the LICENSE.txt file or at
+* http://choosealicense.com/licenses/mit
+*
+* Thanks to Giovanni Difeterici (http://www.gdifeterici.com/)
+*/
+
+(function(global) {
+
+    var addEvent = null;
+    if ( document.addEventListener ) {
+        addEvent = function(element, eventName, callback) {
+            return element.addEventListener( eventName, callback, false );
+        };
+    } else if ( document.attachEvent ) {
+        addEvent = function(element, eventName, callback) {
+            element.attachEvent( 'on'+eventName, callback );
+        };
+    } else {
+        addEvent = function(element, eventName, callback) {
+            element['on'+eventName] = callback;
+        };
+    }
+    
+    global.flowtype = function(element, options) {
+    
+        // Establish default settings/variables
+        // ====================================
+        options.maximum   = options.maximum   || 9999;
+        options.minimum   = options.minimum   || 1;
+        options.maxFont   = options.maxFont   || 9999;
+        options.minFont   = options.minFont   || 1;
+        options.fontRatio = options.fontRatio || 35;
+        options.lineRatio = options.lineRatio || 1.45;
+        
+        // Do the magic math
+        // =================
+        changes = function(el) {
+            var  elw = el.clientWidth
+                ,width = elw > options.maximum ? options.maximum : elw < options.minimum ? options.minimum : elw
+                ,fontBase = width / options.fontRatio
+                ,fontSize = fontBase > options.maxFont ? options.maxFont : fontBase < options.minFont ? options.minFont : fontBase
+            ;
+            
+            el.style.fontSize   = fontSize + 'px';
+            el.style.lineHeight = fontSize * options.lineRatio + 'px';
+        };
+        
+        // Make the magic visible
+        // ======================
+        element.updateFlowType = function(){changes(element);};
+        
+        // Make changes upon resize
+        addEvent( global, 'resize', element.updateFlowType );
+        
+        // Set changes on load
+        element.updateFlowType();
+        
+        // addEvent visiblity for demo purposes - REMOVE IN PRODUCTION
+        global.flowtype.addEvent = addEvent;
+    };
+}(window));
+window.flowtype(document.querySelector('.bio p'), {fontRatio: 22});</script></body></html>
