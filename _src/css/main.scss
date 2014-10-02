@@ -9,6 +9,19 @@ $headingColor: rgb(243, 64, 0);
 $backgroundColor: rgb(206, 222, 236);
 $linkColor: desaturate($headingColor, 20%);
 
+$nameFontSize: 17.5;
+$titleFontSize: 7;
+$bioFontSize: 4;
+
+@mixin vmin($size) {
+    font-size: #{$size}vm;
+    font-size: #{$size}vmin;
+}
+
+@mixin vmax($size) {
+    font-size: #{$size}vmax;
+}
+
 a {
     color: $linkColor;
 }
@@ -31,8 +44,7 @@ a {
             margin: 0;
             padding: 0 0.1rem;
             font-size: 0.2rem;
-            font-size: 2vm; /* IE9... */
-            font-size: 2vmin;
+            @include vmin(2);
         }
     }
 }
@@ -52,11 +64,16 @@ a {
         color: $headingColor;
         line-height: 1;
         vertical-align: bottom;
+        @include vmin($nameFontSize);
     }
 
     .title {
         p {
             margin-bottom: 0;
+        }
+
+        span {
+            @include vmin($titleFontSize);
         }
     }
 
@@ -71,6 +88,7 @@ a {
         p {
             margin-bottom: 0;
             font-size: 0.75rem;
+            @include vmin($bioFontSize);
         }
     }
 
@@ -101,6 +119,18 @@ a {
 
     .title-text {
         width: 40%;
+
+        .name span {
+            @include vmin(0.65 * $nameFontSize);
+        }
+
+        .title span {
+            @include vmin(0.65 * $titleFontSize);
+        }
+
+        .bio p {
+            @include vmin(0.65 * $bioFontSize);
+        }
     }
 }
 
