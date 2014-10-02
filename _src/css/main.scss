@@ -31,6 +31,8 @@ a {
             margin: 0;
             padding: 0 0.1rem;
             font-size: 0.2rem;
+            font-size: 2vm; /* IE9... */
+            font-size: 2vmin;
         }
     }
 }
