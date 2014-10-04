@@ -1,107 +1,84 @@
 @import "../_lib/bower_components/foundation/scss/normalize";
-@import "../_lib/bower_components/foundation/scss/foundation/components/type";
-@import "../_lib/bower_components/foundation/scss/foundation/components/visibility";
-@import "../_lib/bower_components/foundation/scss/foundation/components/grid";
-@import "../_lib/bower_components/foundation/scss/foundation/components/inline-lists";
 
+$body-bg: rgb(206, 222, 236);
 $body-font-color: rgb(80, 80, 80);
-$headingColor: rgb(243, 64, 0);
-$backgroundColor: rgb(206, 222, 236);
-$linkColor: desaturate($headingColor, 20%);
+$header-font-color: rgb(243, 64, 0);
+$anchor-font-color: $header-font-color;
+
+@import "../_lib/bower_components/foundation/scss/foundation/components/type";
+@import "../_lib/bower_components/foundation/scss/foundation/components/inline-lists";
 
 $nameFontSize: 17.5;
 $titleFontSize: 7;
 $bioFontSize: 4;
 
-@mixin vmin($size) {
-    font-size: #{$size}vm;
-    font-size: #{$size}vmin;
-}
 
-@mixin vmax($size) {
-    font-size: #{$size}vmax;
-}
+$mediumWidth: 1024px;
+$mediumHeight: 679px;
+$largeWidth: 1440px;
+$largeHeight: 955px;
 
-a {
-    color: $linkColor;
-}
-
+/*
+ * Base experience for HTML4 browsers
+ *
+ * Render the large image, centered on the viewport at its native resolution
+ */
 .main {
     position: absolute;
-    width: 100%;
-    height: 100%;
-    background-position: bottom center;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: $mediumWidth;
+    height: $mediumHeight;
+    margin: auto;
+
+    border: 3px solid $charcoal;
+
+    background-image: url("../img/lon-medium.jpg");
     background-repeat: no-repeat;
-    color: $body-font-color;
+    background-position: bottom center;
 
-    .acknowledgements {
+    .title-text {
         position: absolute;
-        bottom: 0;
-        width: 100%;
-        background: transparentize($backgroundColor, 0.5);
 
-        p {
-            margin: 0;
-            padding: 0 0.1rem;
-            font-size: 0.2rem;
-            @include vmin(2);
-        }
-    }
-}
+        top: 20px;
+        left: 20px;
+        width: 0.35 * ($mediumWidth - 20px);
 
-.title-text {
-    text-align: center;
-
-    span {
-        display: inline-block;
-    }
-
-    .name h1 {
-        margin-bottom: 0;
-    }
-
-    .name span {
-        color: $headingColor;
-        line-height: 1;
-        vertical-align: bottom;
-        @include vmin($nameFontSize);
-    }
-
-    .title {
-        p {
-            margin-bottom: 0;
+        hr {
+            margin: 10px 0;
+            border-color: $header-font-color;
         }
 
-        span {
-            @include vmin($titleFontSize);
+        .name {
+            h1 {
+                margin: 0;
+            }
+
+            span {
+                font-size: 69px;
+                line-height: 69px;
+            }
         }
-    }
 
-    hr {
-        margin: 0.1rem 0.4rem 0.5rem;
-        border-color: $headingColor;
-    }
+        .title {
+            span {
+                font-size: 28px;
+            }
 
-    .bio {
-        padding: 0 0.75rem;
-
-        p {
-            margin-bottom: 0;
-            font-size: 0.75rem;
-            @include vmin($bioFontSize);
+            p {
+                margin: 0;
+            }
         }
-    }
 
-    .contact {
-        padding: 0 0.75rem;
-        text-align: center;
-
-        .inline-list {
-            display: inline-block;
-            margin: 0;
+        .contact {
+            text-align: center;
 
             li {
-                font-size: 4vmin;
+                display: inline-block;
+                float: none;
+                margin-left: 20px;
             }
 
             li:first-child {
@@ -109,90 +86,18 @@ a {
             }
         }
     }
-}
 
-@media #{$landscape} {
-    .main {
-        background-size: cover;
-        background-position: bottom center;
-    }
+    .acknowledgements {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
 
-    .title-text {
-        width: 40%;
+        color: $jet;
+        background-color: $body-bg;
+        background-color: transparentize($body-bg, 0.65);
 
-        .name span {
-            @include vmin(0.65 * $nameFontSize);
+        p {
+            margin: 0;
         }
-
-        .title span {
-            @include vmin(0.65 * $titleFontSize);
-        }
-
-        .bio p {
-            @include vmin(0.65 * $bioFontSize);
-        }
-    }
-}
-
-@mixin title-gradient($start, $stop, $image) {
-    background-image: -moz-linear-gradient(
-            bottom,
-            transparentize($backgroundColor, 1),
-            transparentize($backgroundColor, 1) $start,
-            $backgroundColor $stop
-        ),
-        url("#{$image}");
-    background-image: -o-linear-gradient(
-            bottom,
-            transparentize($backgroundColor, 1),
-            transparentize($backgroundColor, 1) $start,
-            $backgroundColor $stop
-        ),
-        url("#{$image}");
-    background-image: -webkit-linear-gradient(
-            bottom,
-            transparentize($backgroundColor, 1),
-            transparentize($backgroundColor, 1) $start,
-            $backgroundColor $stop
-        ),
-        url("#{$image}");
-    background-image: linear-gradient(
-            to top,
-            transparentize($backgroundColor, 1),
-            transparentize($backgroundColor, 1) $start,
-            $backgroundColor $stop
-        ),
-        url("#{$image}");
-}
-
-@media #{$small-only} {
-    .main {
-        @include title-gradient(300px, 424px, "../img/lon-small.jpg");
-    }
-}
-
-@media #{$medium-only} {
-    .main {
-        @include title-gradient(453px, 679px, "../img/lon-medium.jpg");
-    }
-}
-
-@media #{$large-only} {
-    .row {
-        max-width: 100%;
-    }
-
-    .main {
-        @include title-gradient(633px, 955px, "../img/lon-large.jpg");
-    }
-}
-
-@media #{$xlarge-up} {
-    .row {
-        max-width: 100%;
-    }
-
-    .main {
-        @include title-gradient(848px, 1273px, "../img/lon-xlarge.jpg");
     }
 }
