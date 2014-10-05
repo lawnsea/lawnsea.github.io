@@ -13,10 +13,14 @@ $titleFontSize: 7;
 $bioFontSize: 4;
 
 
+$smallWidth: 640px;
+$smallHeight: 424px;
 $mediumWidth: 1024px;
 $mediumHeight: 679px;
 $largeWidth: 1440px;
 $largeHeight: 955px;
+$xlargeWidth: 1920px;
+$xlargeHeight: 1273px;
 
 /*
  * Base experience for HTML4 browsers
@@ -44,10 +48,11 @@ $largeHeight: 955px;
 
         top: 20px;
         left: 20px;
+        bottom: 20px;
         width: 0.35 * ($mediumWidth - 20px);
 
         hr {
-            margin: 10px 0;
+            margin: 4px;
             border-color: $header-font-color;
         }
 
@@ -72,17 +77,28 @@ $largeHeight: 955px;
             }
         }
 
+        .bio {
+            p {
+                margin: 0;
+            }
+        }
+
         .contact {
             text-align: center;
 
-            li {
+            ul {
                 display: inline-block;
-                float: none;
-                margin-left: 20px;
-            }
-
-            li:first-child {
                 margin: 0;
+
+                li {
+                    display: inline-block;
+                    float: none;
+                    margin-left: 20px;
+                }
+
+                li:first-child {
+                    margin: 0;
+                }
             }
         }
     }
@@ -92,12 +108,170 @@ $largeHeight: 955px;
         bottom: 0;
         width: 100%;
 
+        .acknowledgements-container {
+            width: 100%;
+            height: 100%;
+            margin: auto;
+        }
+
         color: $jet;
         background-color: $body-bg;
         background-color: transparentize($body-bg, 0.65);
 
-        p {
-            margin: 0;
+        span {
+            display: inline-block;
+            margin: 2px 0;
+            font-size: 0.1rem;
+            vertical-align: top;
         }
+    }
+}
+
+@media only screen and (max-width: $smallWidth) {
+    .main {
+        background-image: url("../img/lon-small.jpg");
+    }
+}
+
+@media only screen and
+  (min-width: $smallWidth + 1) and (max-width: $mediumWidth) {
+    .main {
+        background-image: url("../img/lon-medium.jpg");
+    }
+}
+
+@media only screen and
+  (min-width: $mediumWidth + 1) and (max-width: $largeWidth) {
+    .main {
+        background-image: url("../img/lon-large.jpg");
+    }
+}
+
+@media only screen and (min-width: $largeWidth + 1) {
+    .main {
+        background-image: url("../img/lon-xlarge.jpg");
+    }
+}
+
+@mixin titleText() {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    span {
+        display: inline-block;
+    }
+
+    .bio {
+        padding: 0 10px;
+    }
+}
+
+/*
+ Portrait experience for HTML5 browsers
+
+ - image at bottom, scaled to fit width, with gradient overlay
+ - name, title, bio, links at top, scaled to fit width
+ */
+$portraitRatio: "only screen and (max-aspect-ratio: 2/3)";
+@media #{$portraitRatio} {
+    .main {
+        width: 100%;
+        height: 100%;
+
+        border: none;
+
+        .title-text {
+            @include titleText();
+        }
+    }
+}
+
+@media #{$portraitRatio} and (min-width: $xlargeWidth) {
+    .main {
+        width: $xlargeWidth;
+        height: 100%;
+    }
+}
+
+/*
+ Squareish experience for HTML5 browsers
+
+ - image at bottom, scaled to fit width, with gradient overlay
+ - nder name, title, links at top left ~50% width
+ - bio at top right ~50% width
+ */
+$squareishRatio: "only screen and (min-aspect-ratio: 2/3) and (max-aspect-ratio: 3/2)";
+@media #{$squareishRatio} {
+    .main {
+        width: 100%;
+        height: 100%;
+
+        border: none;
+
+        .title-text {
+            @include titleText();
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+
+            span {
+                display: inline-block;
+            }
+        }
+    }
+}
+
+@media #{$squareishRatio} and (min-width: $xlargeWidth) {
+    .main {
+        width: $xlargeWidth;
+        height: 100%;
+    }
+}
+
+/*
+ Landscape experience for HTML5 browsers
+
+ - image at bottom, scaled to fit smaller of width or height
+ - name, title, links, bio at top left ~40% width
+ */
+$landscapeRatio: "only screen and (min-aspect-ratio: 3/2)";
+@media #{$landscapeRatio} {
+    .main {
+        width: 100%;
+        height: 100%;
+
+        border: none;
+
+        background-size: cover;
+
+        .title-text {
+            @include titleText();
+            width: 40%;
+
+            span {
+                display: inline-block;
+            }
+        }
+
+        .acknowledgements {
+            .acknowledgements-container {
+                width: 75%;
+            }
+        }
+    }
+}
+
+@media #{$landscapeRatio} and (min-width: $xlargeWidth) {
+    .main {
+        width: $xlargeWidth;
+    }
+}
+
+@media #{$landscapeRatio} and (min-height: $xlargeHeight) {
+    .main {
+        height: $xlargeHeight;
     }
 }
