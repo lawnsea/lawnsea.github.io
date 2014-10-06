@@ -163,6 +163,11 @@ $xlargeHeight: 1273px;
         display: inline-block;
     }
 
+    .name span,
+    .title span {
+        font-size: 1rem;
+    }
+
     .bio {
         padding: 0 10px;
     }
@@ -209,8 +214,6 @@ $squareishRatio: "only screen and (min-aspect-ratio: 7/9) and (max-aspect-ratio:
         height: 100%;
 
         border: none;
-
-        background-size: contain;
 
         .title-text {
             @include titleText();
