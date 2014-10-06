@@ -1,36 +1,55 @@
-<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1"><title>Lon Ingram</title><link rel="stylesheet" href="/css/main.css"></head><body><div class="main"><div class="row"><div class="columns small-12 title-text"><div class="name"><h1><span>Lon Ingram</span></h1></div><div class="title"><p><span>Frontend Systems Engineer</span></p></div><hr/><div class="bio"><p class="text-justify">I hack on third-party JavaScript for Bazaarvoice. I live in Austin 
+<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1"><title>Lon Ingram</title><link rel="stylesheet" href="/css/main.css"></head><body><div class="main"><div class="title-text text-center"><div class="name"><h1><span>Lon Ingram</span></h1></div><div class="title"><p><span>Frontend Systems Engineer</span></p></div><hr/><div class="bio"><p class="text-justify">I hack on third-party JavaScript for Bazaarvoice. I live in Austin 
 with my lovely wife, <a href="http://www.cottonandcashmerestyle.com/">Donna</a>, and our son, <a href="https://twitter.com/lawnsea/status/510818552149184512">Sterling</a>. I am fascinated with applying ideas from systems research to the
-challenge of building cool complicated things on the web.</p></div><div class="contact"><ul class="inline-list"><li><a href="https://twitter.com/lawnsea">twitter</a></li><li><a href="https://github.com/lawnsea">github</a></li><li><a href="mailto:lawnsea@gmail.com">email</a></li></ul></div></div></div><div class="acknowledgements"><p class="text-center">Photo courtesy <a href-"https://twitter.com/gf3="href-"https://twitter.com/gf3">@gf3</a>. Thanks to <a href-"https://twitter.com/jennschiffer="href-"https://twitter.com/jennschiffer">@jennschiffer</a> and <a href-"https://twitter.com/brianloveswords="href-"https://twitter.com/brianloveswords">@brianloveswords</a> for
-lending a hand.</p></div></div><script>(function () {
+challenge of building cool complicated things on the web.</p></div><div class="contact"><ul class="inline-list"><li><a href="https://twitter.com/lawnsea">twitter</a></li><li><a href="https://github.com/lawnsea">github</a></li><li><a href="mailto:lawnsea@gmail.com">email</a></li></ul></div></div><div class="acknowledgements text-center"><div class="acknowledgements-container"><span>Photo courtesy <a href-"https://twitter.com/gf3="href-"https://twitter.com/gf3">@gf3</a>. Thanks to <a href-"https://twitter.com/jennschiffer="href-"https://twitter.com/jennschiffer">@jennschiffer</a> and <a href-"https://twitter.com/brianloveswords="href-"https://twitter.com/brianloveswords">@brianloveswords</a> for
+lending a hand.</span></div></div></div><script type="text/javascript">
+(function () {
   function css(el, prop) {
     return window.getComputedStyle ?
       getComputedStyle(el).getPropertyValue(prop) :
       el.currentStyle[prop];
   }
-  
-  function fitTitleText() {
-    var titleTextEls = document.querySelectorAll('.title-text span');
-    var el;
-    
-    for (var i = 0; i < titleTextEls.length; i++) {
-      el = titleTextEls[i];
-      el.style.fontSize = Math.floor(
-          0.95 *
-          parseFloat(css(el, 'font-size')) *
-          el.parentElement.clientWidth / el.clientWidth
-      ) + 'px';
-    }
+
+  function getFittedSize(el) {
+    return Math.floor(
+        0.95 *
+        parseFloat(css(el, 'font-size')) *
+        el.parentElement.clientWidth / el.clientWidth
+      );
+  }
+
+  var nameEl = document.querySelector('.title-text .name span');
+  var titleEl = document.querySelector('.title-text .title span');
+  var linksEl = document.querySelector('.contact ul');
+  var acksEl = document.querySelector('.acknowledgements span');
+  function fitAllEls() {
+    var nameSize = getFittedSize(nameEl);
+    nameEl.style.fontSize = nameSize + 'px';
+    nameEl.style.lineHeight = nameSize + 'px';
+
+    var titleSize = getFittedSize(titleEl);
+    titleEl.style.fontSize = titleSize + 'px';
+    titleEl.style.lineHeight = titleSize + 'px';
+
+    var acksSize = getFittedSize(acksEl);
+    acksEl.style.fontSize = acksSize + 'px';
+    acksEl.parentElement.style.lineHeight = (1.2 * acksSize) + 'px';
+
+    var linksSize = 0.75 * getFittedSize(linksEl);
+    linksEl.style.fontSize = linksSize + 'px';
+    linksEl.style.lineHeight = (1.2 * linksSize) + 'px';
   }
   
   if (!document.querySelectorAll || !window.addEventListener) {
     return;
   }
   
-  fitTitleText();
+  fitAllEls();
   
-  window.addEventListener('resize', fitTitleText);
-  window.addEventListener('deviceorientation', fitTitleText);
-}());</script><script>/*
+  window.addEventListener('resize', fitAllEls);
+  window.addEventListener('deviceorientation', fitAllEls);
+}());
+</script><script type="text/javascript">
+/*
 * FlowType.JS without jQuery.
 * Ported by Christian Dannie Storgaard. Based on:
 *
@@ -100,4 +119,5 @@ lending a hand.</p></div></div><script>(function () {
         global.flowtype.addEvent = addEvent;
     };
 }(window));
-window.flowtype(document.querySelector('.bio p'), {fontRatio: 22});</script></body></html>
+window.flowtype(document.querySelector('.bio p'), {fontRatio: 22});
+</script></body></html>
