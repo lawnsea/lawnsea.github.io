@@ -127,29 +127,60 @@ $xlargeHeight: 1273px;
     }
 }
 
+@mixin title-gradient($start, $stop, $image) {
+    background-image: -moz-linear-gradient(
+            bottom,
+            transparentize($body-bg, 1),
+            transparentize($body-bg, 1) $start,
+            $body-bg $stop
+        ),
+        url("#{$image}");
+    background-image: -o-linear-gradient(
+            bottom,
+            transparentize($body-bg, 1),
+            transparentize($body-bg, 1) $start,
+            $body-bg $stop
+        ),
+        url("#{$image}");
+    background-image: -webkit-linear-gradient(
+            bottom,
+            transparentize($body-bg, 1),
+            transparentize($body-bg, 1) $start,
+            $body-bg $stop
+        ),
+        url("#{$image}");
+    background-image: linear-gradient(
+            to top,
+            transparentize($body-bg, 1),
+            transparentize($body-bg, 1) $start,
+            $body-bg $stop
+        ),
+        url("#{$image}");
+}
+
 @media only screen and (max-width: $smallWidth) {
     .main {
-        background-image: url("../img/lon-small.jpg");
+        @include title-gradient(300px, $smallHeight, "../img/lon-small.jpg");
     }
 }
 
 @media only screen and
   (min-width: $smallWidth + 1) and (max-width: $mediumWidth) {
     .main {
-        background-image: url("../img/lon-medium.jpg");
+        @include title-gradient(453px, $mediumHeight, "../img/lon-medium.jpg");
     }
 }
 
 @media only screen and
   (min-width: $mediumWidth + 1) and (max-width: $largeWidth) {
     .main {
-        background-image: url("../img/lon-large.jpg");
+        @include title-gradient(633px, $largeHeight, "../img/lon-large.jpg");
     }
 }
 
 @media only screen and (min-width: $largeWidth + 1) {
     .main {
-        background-image: url("../img/lon-xlarge.jpg");
+        @include title-gradient(848px, $xlargeHeight, "../img/lon-xlarge.jpg");
     }
 }
 
