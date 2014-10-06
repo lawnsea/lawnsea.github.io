@@ -174,7 +174,7 @@ $xlargeHeight: 1273px;
  - image at bottom, scaled to fit width, with gradient overlay
  - name, title, bio, links at top, scaled to fit width
  */
-$portraitRatio: "only screen and (max-aspect-ratio: 2/3)";
+$portraitRatio: "only screen and (max-aspect-ratio: 7/9)";
 @media #{$portraitRatio} {
     .main {
         width: 100%;
@@ -202,7 +202,7 @@ $portraitRatio: "only screen and (max-aspect-ratio: 2/3)";
  - nder name, title, links at top left ~50% width
  - bio at top right ~50% width
  */
-$squareishRatio: "only screen and (min-aspect-ratio: 2/3) and (max-aspect-ratio: 3/2)";
+$squareishRatio: "only screen and (min-aspect-ratio: 7/9) and (max-aspect-ratio: 3/2)";
 @media #{$squareishRatio} {
     .main {
         width: 100%;
