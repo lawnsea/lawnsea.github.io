@@ -1,12 +1,12 @@
-@import "../_lib/bower_components/foundation/scss/normalize";
+@import "./foundation/scss/normalize";
 
 $body-bg: rgb(206, 222, 236);
 $body-font-color: rgb(80, 80, 80);
 $header-font-color: rgb(243, 64, 0);
 $anchor-font-color: $header-font-color;
 
-@import "../_lib/bower_components/foundation/scss/foundation/components/type";
-@import "../_lib/bower_components/foundation/scss/foundation/components/inline-lists";
+@import "./foundation/scss/foundation/components/type";
+@import "./foundation/scss/foundation/components/inline-lists";
 
 $nameFontSize: 17.5;
 $titleFontSize: 7;
